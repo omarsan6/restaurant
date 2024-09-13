@@ -1,6 +1,7 @@
 const menu = document.querySelector('.hamburguesa')
 const navegacion = document.querySelector('.navegacion')
 const imagenes = document.querySelectorAll('img')
+const formulario = document.querySelector('form')
 
 const contenedorPlatillos = document.querySelector('.platillos')
 
@@ -13,6 +14,7 @@ const btnPostres = document.querySelector('.postres')
 document.addEventListener('DOMContentLoaded', ()=>{
     eventos();
     platillos();
+    formularioBeta();
 })
 
 // Menu
@@ -133,6 +135,15 @@ const limpiarHtml = (contenedorPlatillos) => {
     while(contenedorPlatillos.firstChild){
         contenedorPlatillos.removeChild(contenedorPlatillos.firstChild)
     }
+}
+
+const formularioBeta = () => {
+    formulario.addEventListener('submit', (e) =>{
+        e.preventDefault();
+
+        alert("El formulario no funciona en la DEMO")
+
+    })
 }
 
 
