@@ -11,7 +11,7 @@ const btnPastas = document.querySelector('.pasta')
 const btnPizza = document.querySelector('.pizza')
 const btnPostres = document.querySelector('.postres')
 
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
     eventos();
     platillos();
     formularioBeta();
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 // Menu
 const eventos = () => {
-    menu.addEventListener('click',abrirMenu)
+    menu.addEventListener('click', abrirMenu)
 }
 
 const abrirMenu = () => {
@@ -35,7 +35,7 @@ const botonCerrar = () => {
 
     const body = document.querySelector('body')
     body.appendChild(overlay)
-   
+
 
     parrafo.textContent = "x"
     parrafo.classList.add('btn-cerrar')
@@ -45,7 +45,7 @@ const botonCerrar = () => {
 
 }
 
-const cerrarMenu = (boton,overlay) => {
+const cerrarMenu = (boton, overlay) => {
 
     boton.addEventListener('click', () => {
         navegacion.classList.add('ocultar')
@@ -53,18 +53,29 @@ const cerrarMenu = (boton,overlay) => {
         boton.remove()
     })
 
-    overlay.onclick = function(){
+    overlay.onclick = function () {
         overlay.remove()
         boton.remove()
         navegacion.classList.add('ocultar')
     }
 
+    /*=============== REMOVE MENU MOBILE ===============*/
+    const navLink = document.querySelectorAll('.nav__link')
+
+    // Cuando se da click en un link se cierra el menu
+
+    navLink.forEach(n => n.addEventListener('click', () =>{
+        overlay.remove()
+        boton.remove()
+        navegacion.classList.add('ocultar')
+    }))
+
 }
 
 //Data img
-const observer = new IntersectionObserver((entries, observer)=>{
-    entries.forEach((entry)=>{
-        if(entry.isIntersecting){
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
             const imagen = entry.target
             imagen.src = imagen.dataset.src
             observer.unobserve(imagen)
@@ -78,21 +89,21 @@ imagenes.forEach((imagen) => {
 
 // Filtros menu
 
-const platillos = () =>{
+const platillos = () => {
 
     let platillosArreglo = []
     const platillos = document.querySelectorAll('.platillo')
     platillos.forEach(platillo => platillosArreglo = [...platillosArreglo, platillo])
 
-    const ensaladas = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'ensalada'  )
-    const pastas = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'pasta'  )
-    const pizzas = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'pizza'  )
-    const postres = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'postre'  )
+    const ensaladas = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'ensalada')
+    const pastas = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'pasta')
+    const pizzas = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'pizza')
+    const postres = platillosArreglo.filter(ensalada => ensalada.getAttribute('data-platillo') === 'postre')
 
-    mostrarPlatillos(ensaladas,pastas,pizzas,postres, platillosArreglo)
+    mostrarPlatillos(ensaladas, pastas, pizzas, postres, platillosArreglo)
 }
 
-const mostrarPlatillos = (ensaladas,pastas, pizzas, postres, todos) => {
+const mostrarPlatillos = (ensaladas, pastas, pizzas, postres, todos) => {
 
     btnEnsaladas.addEventListener('click', () => {
         limpiarHtml(contenedorPlatillos)
@@ -132,19 +143,22 @@ const mostrarPlatillos = (ensaladas,pastas, pizzas, postres, todos) => {
 }
 
 const limpiarHtml = (contenedorPlatillos) => {
-    while(contenedorPlatillos.firstChild){
+    while (contenedorPlatillos.firstChild) {
         contenedorPlatillos.removeChild(contenedorPlatillos.firstChild)
     }
 }
 
 const formularioBeta = () => {
-    formulario.addEventListener('submit', (e) =>{
+    formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 
         alert("El formulario no funciona en la DEMO")
 
     })
 }
+
+
+
 
 
 
