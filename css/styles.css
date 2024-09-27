@@ -124,7 +124,7 @@ img{
 }
 
 .pantalla-completa{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -145,7 +145,8 @@ img{
 /* Encabezado */
 .contenedor-navegacion{
     background-color: var(--oscuro);
-    position: relative;
+    position: fixed;
+    width: 100%;
     z-index: 5;
 }
 
@@ -223,7 +224,9 @@ img{
 
 .contenido-header{
     position: relative;
+    top: 8rem;
 }
+
 .contenido-header::before{
     content: '';
     position: absolute;
